@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 启用二级缓存,缺省已经启用 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 日志技术 -->
+        <setting name="logImpl" value="LOG4J"/>
+        <!-- 开启延迟加载功能 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 设置不要积极地去查询关联对象 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!-- 延迟加载触发的方法 -->
+        <setting name="lazyLoadTriggerMethods" value="clone"/>
+        <!--开启驼峰命名转换-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!-- 类型别名 -->
+    <typeAliases>
+    </typeAliases>
+    <plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用MySQL方言的分页 -->
+            <property name="helperDialect" value="mysql"/>
+            <property name="pageSizeZero" value="true"/>
+        </plugin>
+    </plugins>
+
+</configuration>

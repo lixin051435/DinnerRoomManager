@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.drm.dao.DinnerOrderDao">
+    <select id="getAllDinnerOrder" resultType="com.bysj.drm.entity.DinnerOrder" parameterType="com.bysj.drm.dto.DinnerOrderCond">
+        SELECT * from dinner_order
+        <where>
+            <if test="pay != null">
+                <choose>
+                    <when test="pay == 0">
+                        and ispay = 0
+                    </when>
+                    <otherwise>
+                        and ispay = #{pay}
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="startTime != null and startTime != ''">
+                and ordertime &gt; #{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                and ordertime &lt; #{endTime}
+            </if>
+        </where>
+         ORDER BY isfull
+    </select>
+
+</mapper>
